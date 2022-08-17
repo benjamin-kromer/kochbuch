@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+import Ingredients from './components/Ingredients';
+import AddIngredient from './components/AddIngredient';
 
-function App() {
+const App = () => {
+  const [ingredients,setIngredients] = useState([{name:"Karotte",amount:1},{name:"Zwiebel",amount:1.5}]);
+
+  const onAddIngredient = (ingredient) =>{
+    console.log(`submitted ingredient: ${JSON.stringify(ingredient)}`)
+    const actualIngredients = ingredients;
+    actualIngredients.push(ingredient);
+    console.log(`updated ingredients: ${JSON.stringify(ingredients)}`)
+    setIngredients(actualIngredients)
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="ui container">
+     <h2>Kochbuch</h2>
+     <AddIngredient onAddIngredient={onAddIngredient} />
+     <Ingredients ingredients={ingredients} />
     </div>
   );
 }

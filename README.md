@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My first Chrome Extension and one of my first Reactjs Projects
+This will be a collection of recipes where one could filter  recipes by ingredients. 🍅 🥕 🧅
 
 ## Available Scripts
 
