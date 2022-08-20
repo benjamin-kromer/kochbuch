@@ -1,17 +1,12 @@
 import React from "react";
-import Ingredient from "./Ingredient";
 
-const Ingredients = ({ ingredients }) => {
-  const onIngredientDelete = (ingredient) => {
-    console.log(`want to delete ${ingredient}`);
-  };
+const Ingredients = ({ ingredients, deleteIngredient }) => {
   const renderedIngredients = ingredients.map((el, i) => {
     return (
-      <Ingredient
-        key={i}
-        name={el.name}
-        amount={el.amount}
-        onIngridientDelete={onIngredientDelete}></Ingredient>
+      <div key={i} className="ui label">
+      {`${el.name} ${el.amount}`}
+      <i  className="delete icon" onClick={()=>{deleteIngredient(i)}}></i>
+      </div>
     );
   });
   return (

@@ -1,24 +1,30 @@
-import React,{useState} from 'react';
-import Ingredients from './components/Ingredients';
-import AddIngredient from './components/AddIngredient';
+import React, { useState } from "react";
+import Ingredients from "./components/Ingredients";
+import Input from "./components/Input";
+import Recipes from './components/Recipes';
 
 const App = () => {
-  const [ingredients,setIngredients] = useState([{name:"Karotte",amount:1},{name:"Zwiebel",amount:1.5}]);
-
-  const onAddIngredient = (ingredient) =>{
-    console.log(`submitted ingredient: ${JSON.stringify(ingredient)}`)
-    const actualIngredients = ingredients;
-    actualIngredients.push(ingredient);
-    console.log(`updated ingredients: ${JSON.stringify(ingredients)}`)
-    setIngredients(actualIngredients)
+  const [ingredients, setIngredients] = useState([]);
+  const onAddIngredient = (ingredient) => {
+    const actualIngredients = ingredients.concat(ingredient);
+    setIngredients(actualIngredients);
+  };
+  const deleteIngredient = (i) => {
+    setIngredients([...ingredients.slice(0, i), ...ingredients.slice(i + 1)]);
   };
   return (
     <div className="ui container">
-     <h2>Kochbuch</h2>
-     <AddIngredient onAddIngredient={onAddIngredient} />
-     <Ingredients ingredients={ingredients} />
+      <h2>Kochbuch</h2>
+      <Input addIngredient={onAddIngredient} />
+      <br />
+      <Ingredients
+        ingredients={ingredients}
+        deleteIngredient={deleteIngredient}
+      />
+      <br />
+      <Recipes />
     </div>
   );
-}
+};
 
 export default App;
