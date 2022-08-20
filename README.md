@@ -7,8 +7,9 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the build scripts and starts both frontend as well as the backend.
+You can then import the build folder as chrome extension.
+Before you do specifie a environment variable for your mongodb connection url in backend/.env -> MONGODB_CONNECTION_URL
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

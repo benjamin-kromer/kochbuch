@@ -44,8 +44,7 @@ const recipeSchema = new mongoose.Schema({
     unique: true,
   },
   ingredients: Array,
-  description:String,
-  data:Object
+  description: String
 });
 //==========================================
 
@@ -74,27 +73,30 @@ app.get("/api/v1/recipes", (req, res) => {
     console.log(`results: ${results}`)
   })
 });
-app.get("/api/v1/recipes/:id", (req, res) => {
-  const id = req.params.id;
-  console.log(`Das Rezept mit der id: ${id} laden zun zurückgeben!`);
-  res.json({"ok":id})
-});
+
 app.post("/api/v1/recipes", (req,res)=>{
-    const {name, description, ingredients, data} = req.body;
+    const { name, description, ingredients } = req.body;
     Recipe.findOneAndUpdate(
-        { name },
+        { name: name },
         {
-          name,
-          description,
-          ingredients,
-          data
+          description: description,
+          ingredients: ingredients
         },
         {
+            new:true,
           upsert: true,
         }
       )
-        .then((result) => console.log(result))
-        .catch((err) => console.log(err));
+        .then((result) => {
+            console.log(`created/updated doc: ${result}`);
+            res.sendStatus('200')
+    })
+        .catch((err) => {
+                console.log(err);
+                res.sendStatus('500')
+        });
+    
+    
 })
 //==========================================
 

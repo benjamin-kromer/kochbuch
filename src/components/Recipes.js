@@ -7,6 +7,7 @@ const Recipes = () => {
   const [name, setName] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(`name: ${name} descr: ${description}`)
     const postRecipeToDB = async () => {
       const res = await axios({
         method: "post",
@@ -17,7 +18,7 @@ const Recipes = () => {
         return res.data;
       }
     };
-    console.log(postRecipeToDB());
+    postRecipeToDB()
   };
   useEffect(() => {
     const fetchLast10Recipes = async () => {
