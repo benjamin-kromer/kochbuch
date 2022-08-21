@@ -10,7 +10,7 @@ const Ingredients = ({ ingredients, deleteIngredient }) => {
     );
   });
   return (
-    <div className="ui container ingridientsList">{renderedIngredients}</div>
+    <div className="ui segment ingridientsList"><label><h4>Zutaten</h4></label>{renderedIngredients}</div>
   );
 };
 

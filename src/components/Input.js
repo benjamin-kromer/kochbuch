@@ -15,7 +15,7 @@ const Input = ({ addIngredient }) => {
             </div>
             <div className="field">
                 <label>Menge:</label>
-                <input type="number" min="0.1" max="31" step="0.01" name="amount" placeholder="1.5" value={ingredientAmount} onChange={(e) => {setIngredientAmount(Number(e.target.value))}}></input>
+                <input type="number" min="0.1" step="0.01" name="amount" placeholder="1.5" value={ingredientAmount} onChange={(e) => {setIngredientAmount(Number(e.target.value))}}></input>
             </div>
             <button className="ui button" type="submit">Zutat hinzufügen</button>
         </form>

@@ -16,13 +16,11 @@ const App = () => {
     <div className="ui container">
       <h2>Kochbuch</h2>
       <Input addIngredient={onAddIngredient} />
-      <br />
       <Ingredients
         ingredients={ingredients}
         deleteIngredient={deleteIngredient}
       />
-      <br />
-      <Recipes />
+      <Recipes ingredients={ingredients} />
     </div>
   );
 };

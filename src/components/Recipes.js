@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import RecipeIngredients from "./RecipeIngredients";
 
-const Recipes = () => {
+const Recipes = ({ingredients}) => {
+    //console.log(JSON.stringify(ingredients))
   const [recipes, setRecipes] = useState([]);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
@@ -12,7 +14,7 @@ const Recipes = () => {
       const res = await axios({
         method: "post",
         url: "/api/v1/recipes",
-        data: { name, description },
+        data: { name, description, ingredients },
       });
       if (res.data !== "undefined") {
         return res.data;
@@ -40,8 +42,11 @@ const Recipes = () => {
       <div key={i} className="card">
         <div className="content">
           <div className="header">{recipe.name}</div>
-          <div className="meta">{recipe.ingredients}</div>
+          <div className="meta">Zubereitungszeit 60 min</div>
           <div className="description">{recipe.description}</div>
+        </div>
+        <div className="extra content">
+        <RecipeIngredients ingredients={recipe.ingredients} />
         </div>
       </div>
     );
@@ -49,7 +54,8 @@ const Recipes = () => {
   return (
     <div className="ui container">
       <div className="ui segment">
-        <h4>Die letzten 10 Rezepte</h4>
+        <label><h4>Die letzten 10 Rezepte</h4></label>
+        <br />
         <div className="ui cards">{renderedRecipes}</div>
       </div>
       <div className="ui attached segment">
